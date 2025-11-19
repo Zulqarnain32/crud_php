@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
 
 <body>
     <div class="p-10">
-        <button class="text-white bg-blue-500 px-3 py-1 cursor-pointer my-3">Add Student</button>
+        <a href="/crud/create.php" class="text-white bg-blue-500 px-3 py-1 cursor-pointer my-3">Add Student</a>
         <table class="w-full text-sm text-left">
             <thead>
                 <tr>
@@ -64,25 +65,12 @@
                             <td>$row[rollno]</td>
                             <td>$row[city]</td>
                             <td>
-                              <a href='' class='bg-yellow-400 px-3 py-1 rounded-md cursor-pointer text-white'>Edit</a>
-                              <a href='' class='bg-red-400 px-3 py-1 rounded-md cursor-pointer text-white'>Delete</a>
+                              <a href='/crud/edit.php?id=" . $row['id'] . "' class='bg-yellow-400 px-3 py-1 rounded-md cursor-pointer text-white'> Edit </a>
+                              <a href='/crud/delete.php?id=". $row['id']."' class='bg-red-400 px-3 py-1 rounded-md cursor-pointer text-white'>Delete</a>
                             </td>
                     </tr>";
                 }
-
                 ?>
-                <!-- <tr class = "border">
-                        <td class = "p-3">1</td>
-                        <td>zulqarnain</td>
-                        <td>zulqarnain@gmail.com</td>
-                        <td>101</td>
-                        <td>Lahore</td>
-                        <td>
-                            <a href="" class = "bg-yellow-400 px-3 py-1 rounded-md cursor-pointer text-white">Edit</a>
-                            <a href="" class = "bg-red-400 px-3 py-1 rounded-md cursor-pointer text-white">Delete</a>
-                        </td>
-                    </tr> -->
-
             </tbody>
         </table>
 
