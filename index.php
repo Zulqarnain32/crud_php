@@ -1,4 +1,8 @@
 
+<?php  
+  include('db.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,20 +41,11 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $servername = "localhost";
-                $username = "root";
-                $passowrd = "";
-                $database = "university";
-                //connection
-                $conn = new mysqli($servername, $username, $passowrd, $database);
+               
+           <?php
+           
+         
 
-                //   check connection
-                if ($conn->connect_error) {
-                    die("connection failed " . $conn->connect_error);
-                }
-
-                //   read row from database 
                 $sql = "SELECT * fROM students";
                 $result = $conn->query($sql);
 
@@ -70,6 +65,7 @@
                             </td>
                     </tr>";
                 }
+            
                 ?>
             </tbody>
         </table>

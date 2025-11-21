@@ -1,18 +1,12 @@
 <?php
-// require_once "index.php";
-$servername = "localhost";
-$username = "root";
-$passowrd = "";
-$database = "university";
-//connection
-$conn = new mysqli($servername, $username, $passowrd, $database);
+ include('db.php');
 
 $name = "";
 $email = "";
 $rollno = "";
 $city = "";
-$errorMessage = "";
-$successMessage = "";
+// $errorMessage = "";
+// $successMessage = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = $_POST["name"];
@@ -22,15 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   do {
     if (empty($name) || empty($email) || empty($rollno) || empty($city)) {
-      $errorMessage = "Please fill all the fields";
+      // $errorMessage = "Please fill all the fields";
+      $_SESSION['status'] = "Please fill all the fields";
       break;
     }
     // add new student 
     $sql = "INSERT into students (name,email,rollno,city) VALUES
-                ('$name', '$email', '$rollno', '$city');
-        ";
+              ('$name', '$email', '$rollno', '$city')";
 
     $result = $conn->query($sql);
+
     if (!$result) {
       $errorMessage = "invalid query " . $conn->error;
       break;
@@ -40,9 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rollno = "";
     $city = "";
 
-
-
-    $successMessage = "student have created";
+    // $successMessage = "student has created";
+     $_SESSION['status'] = "student has created";
+     
     header("location: /crud/index.php");
 
 
@@ -98,12 +93,11 @@ $conn->close();
         name="city"
         value="<?php echo $city ?>"
         class="mt-1 mb-3 w-full px-3 py-1 text-[16px] border border-gray-300">
+     <!-- Create page message  -->
       <?php
-      if (empty($successMessage)) {
-        echo "<p>$errorMessage</p>";
-      }
-      if (!empty($successMessage)) {
-        echo "<p>$successMessage</p>";
+      if (isset($_SESSION['status'])) {
+        echo $_SESSION['status'];
+        unset($_SESSION['status']);
       }
       ?>
       <input type="submit" name="add" value="Add Student" class="text-white bg-blue-500 hover:bg-blue-700 px-3 py-1 cursor-pointer mt-2 w-full">
